@@ -1,9 +1,11 @@
 .nav {
     padding: 25px 0;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     background: rgb(20, 20, 20, .5);
     border-bottom: 1px solid white;
+    z-index: 5;
 
     &__logo {
         color: rgb(255, 255, 255);
