@@ -1,0 +1,28 @@
+$Montserrat: ('Bold',700),
+             ('Regular', 400),
+            //  ('BoldItalic',700),
+             ('Light',300);
+             
+@each $name, $weigth in $Montserrat{
+    @font-face {
+        font-family: 'Montserrat';
+        src: url('../fonts/Montserrat/Montserrat-#{$name}.ttf');
+        font-weight: $weigth;
+    }
+}
+$Raleway:    ('Bold',700),
+             ('Regular', 400);
+             
+@each $name, $weigth in $Raleway{
+    @font-face {
+        font-family: 'Raleway';
+        src: url('../fonts/Raleway/Raleway-#{$name}.ttf');
+        font-weight: $weigth;
+    }
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter/Inter-Regular.ttf');
+    font-weight: 400;
+}

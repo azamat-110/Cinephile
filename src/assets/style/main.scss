@@ -1,0 +1,21 @@
+@import './fonts.scss', './reset.scss',
+'./navbar.scss';
+
+.container {
+    max-width: 1350px;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+body {
+    background: #141414;
+}
+
+button {
+    transition: .5s;
+
+    &:active {
+        transform: scale(.9);
+    }
+}
