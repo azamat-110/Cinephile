@@ -6,6 +6,10 @@
     background: rgb(20, 20, 20, .5);
     border-bottom: 1px solid white;
     z-index: 5;
+    transition: .5s;
+    &.scroll{
+        background: #000;
+    }
 
     &__logo {
         color: rgb(255, 255, 255);
