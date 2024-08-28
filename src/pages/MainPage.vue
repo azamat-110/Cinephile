@@ -25,12 +25,14 @@
     <main class="main">
       <MatSwiper />
       <MatSwiper isMovies="false" />
+      <TopMovies/>
     </main>
   </div>
 </template>
 
 <script setup>
 import MatSwiper from "@/components/MatSwiper.vue";
+import TopMovies from "@/components/TopMovies.vue";
 </script>
 
 <style lang="scss" scoped>
