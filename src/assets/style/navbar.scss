@@ -1,14 +1,19 @@
 .nav {
-    padding: 25px 0;
+    margin: 25px;
+    padding: 15px ;
     position: fixed;
-    width: 100%;
     top: 0;
-    background: rgb(20, 20, 20, .5);
-    border-bottom: 1px solid white;
+    width: 96.5%;
+    background: rgba(55, 54, 54, 0.7);
     z-index: 5;
     transition: .5s;
-    &.scroll{
-        background: #000;
+    border-radius: 40px;
+    border: 1px solid transparent;
+
+    &.scroll {
+        background: rgba(55, 54, 54, 0.6);
+        border: 1px solid #fff; 
+        backdrop-filter: blur(10px);
     }
 
     &__logo {
@@ -48,12 +53,12 @@
 
                 &::after {
                     content: '';
-                    width: 15px;
-                    height: 15px;
+                    width: 10px;
+                    height: 10px;
                     position: absolute;
                     border-radius: 50%;
                     background: rgba(20, 154, 3, 1);
-                    bottom: -24px;
+                    bottom: -15px;
                 }
             }
 

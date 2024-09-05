@@ -1,5 +1,9 @@
 <template>
   <section class="top__movies">
+    <h2 class="top__movies-title">
+      ТОП
+      <span>10</span>
+    </h2>
     <swiper
       :navigation="true"
       :modules="modules"
@@ -8,12 +12,11 @@
       class="top__movies-swiper"
     >
       <swiper-slide class="top__movies-swiper-item">
-        <h2 class="top__movies-title">
-            ТОП
-            <span>10</span>
-        </h2>
-        <img src="@/assets/images/slide.png" alt="slide" />
-      </swiper-slide>
+       <div class="top__movies-swiper-item-info">
+        <h5>1</h5>
+       </div>
+        <img src="@/assets/images/slide.png" alt="slide" /> </swiper-slide
+      >
     </swiper>
   </section>
 </template>
@@ -35,19 +38,17 @@ const swiperModules = ref({
       slidesPerView: 2,
     },
     900: {
-      slidesPerView: 3,
+      slidesPerView: 2,
     },
     1200: {
-      slidesPerView: 4,
+      slidesPerView: 3  ,
     },
     1450: {
-      slidesPerView: 5,
+      slidesPerView: 4 ,
     },
   },
 });
- 
 </script>
 
 <style lang="scss" scoped>
-
 </style>

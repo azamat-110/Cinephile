@@ -1,16 +1,39 @@
 <template>
-  <div class="wrapper">
-    <NavBar />
-    <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-  </div>
+  <transition name="fade" mode="out-in">
+    <div class="wrapper" v-if="upcomingList">
+      <ProgressIndicator/>
+      <NavBar />
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+      <Footer />
+    </div>
+    <Loader v-else />
+  </transition>
 </template>
 
 <script setup>
 import NavBar from "@/components/NavBar.vue";
+import Footer from "@/components/Footer.vue";
+import Loader from "@/components/Loader.vue";
+import ProgressIndicator from "@/components/ProgressIndicator.vue";
+import { useUpcoming } from "@/store/upcoming.js";
+import { onMounted, computed } from "vue";
+
+const upcomingStore = useUpcoming();
+onMounted(() => {
+  setTimeout(() => {
+    upcomingStore.getUpcoming();
+  }, 200);
+});
+
+const upcomingList = computed(() => {
+  return upcomingStore.upcoming?.results;
+});
+
+console.log(upcomingList);
 </script>
 
 <style lang="scss" scoped>

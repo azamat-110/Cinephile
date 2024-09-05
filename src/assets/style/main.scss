@@ -1,5 +1,5 @@
 @import './fonts.scss', './reset.scss',
-'./navbar.scss';
+'./navbar.scss', './footer.scss';
 
 .container {
     max-width: 1350px;
@@ -30,6 +30,63 @@ button {
     padding-bottom: 80px;
 
     &-title {
-        
+        color: rgb(20, 20, 20);
+        font-family: "Montserrat";
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 36px;
+        margin-left: 100px;
+        margin-bottom: 80px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        & span {
+            color: rgb(20, 154, 3);
+            font-family: "Montserrat";
+            font-weight: 700;
+            line-height: 30px;
+            font-size: 50px;
+        }
+    }
+
+    &-swiper {
+        padding-left: 100px !important;
+
+        &-item {
+            width: 100%;
+            background: #000;
+            height: 460px !important;
+            border-radius: 10px;
+            overflow: hidden;
+
+            & img {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 100%;
+                object-fit: cover;
+                z-index: -5;
+            }
+
+            &-info {
+                height: 100%;
+                background: linear-gradient(90deg, rgb(20, 20, 20) 30%, rgba(20, 20, 20, 0) 100%);
+                z-index: 5px;
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                & h5 {
+                    color: rgb(255, 255, 255);
+                    font-family: "Montserrat";
+                    font-size: 150px;
+                    font-weight: 700;
+                    line-height: 183;
+                    margin-left: 80px;
+                }
+            }
+        }
+
     }
 }

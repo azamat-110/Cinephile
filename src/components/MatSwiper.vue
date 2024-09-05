@@ -11,25 +11,7 @@
       space-between="25"
       class="mat__section-swiper"
     >
-      <swiper-slide class="mat__section-swiper-item">
-        <img src="@/assets/images/slide.png" alt="slide" />
-      </swiper-slide>
-      <swiper-slide class="mat__section-swiper-item">
-        <img src="@/assets/images/slide.png" alt="slide" />
-      </swiper-slide>
-      <swiper-slide class="mat__section-swiper-item">
-        <img src="@/assets/images/slide.png" alt="slide" />
-      </swiper-slide>
-      <swiper-slide class="mat__section-swiper-item">
-        <img src="@/assets/images/slide.png" alt="slide" />
-      </swiper-slide>
-      <swiper-slide class="mat__section-swiper-item">
-        <img src="@/assets/images/slide.png" alt="slide" />
-      </swiper-slide>
-      <swiper-slide class="mat__section-swiper-item">
-        <img src="@/assets/images/slide.png" alt="slide" />
-      </swiper-slide>
-      <swiper-slide class="mat__section-swiper-item">
+      <swiper-slide class="mat__section-swiper-item" @click="getItem()">
         <img src="@/assets/images/slide.png" alt="slide" />
       </swiper-slide>
     </swiper>
@@ -67,6 +49,14 @@ const swiperModules = ref({
 const props = defineProps({
   isMovies: true,
 });
+
+
+const gettersITEM = (item)=>{
+  console.log(item);
+  
+}
+
+
 </script>
 
 <style lang="scss" scoped>

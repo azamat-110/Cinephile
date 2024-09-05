@@ -21,11 +21,10 @@
         </div>
       </div>
     </header>
-
     <main class="main">
       <MatSwiper />
       <MatSwiper isMovies="false" />
-      <TopMovies/>
+      <TopMovies />
     </main>
   </div>
 </template>
@@ -33,6 +32,9 @@
 <script setup>
 import MatSwiper from "@/components/MatSwiper.vue";
 import TopMovies from "@/components/TopMovies.vue";
+
+// const upcomingStore = useUpcoming();
+
 </script>
 
 <style lang="scss" scoped>
