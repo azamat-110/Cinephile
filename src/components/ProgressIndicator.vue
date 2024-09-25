@@ -11,7 +11,6 @@ let progress = ref(0);
 
 window.addEventListener("scroll", () => {
   const { documentElement, body } = document;
-  console.log(documentElement.scrollHeight - documentElement.clientHeight);
 
   let windowScroll = body.scrollTop || documentElement.scrollTop;
   let height = documentElement.scrollHeight - documentElement.clientHeight;
@@ -22,7 +21,6 @@ window.addEventListener("scroll", () => {
 // const scrollSarted = ()=>{
 //     const scrollTop = scrollContainer.value.scrollTop;
 // };
-
 // onMounted(() => {
 //     scrollContainer.value.addEventListener('scroll', scrollSarted());
 // });

@@ -11,8 +11,11 @@
       space-between="25"
       class="mat__section-swiper"
     >
-      <swiper-slide class="mat__section-swiper-item" @click="getItem()">
-        <img src="@/assets/images/slide.png" alt="slide" />
+      <swiper-slide class="mat__section-swiper-item" @click="getItem()" v-for="item in movies?.results" :key="item.id">
+        <img :src="
+          `https://image.tmdb.org/t/p/original/` +
+          item.poster_path
+        " alt="slide" />
       </swiper-slide>
     </swiper>
   </section>
@@ -48,19 +51,15 @@ const swiperModules = ref({
 
 const props = defineProps({
   isMovies: true,
+  movies: Array,
 });
 
-
-const gettersITEM = (item)=>{
+const gettersITEM = (item) => {
   console.log(item);
-  
-}
-
-
+};
 </script>
 
 <style lang="scss" scoped>
-
 .mat__section {
   padding-top: 20px;
   padding-bottom: 50px;

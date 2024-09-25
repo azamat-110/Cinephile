@@ -9,10 +9,12 @@
     transition: .5s;
     border-radius: 40px;
     border: 1px solid transparent;
+    // box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.577);
+
 
     &.scroll {
         background: rgba(55, 54, 54, 0.6);
-        border: 1px solid #fff; 
+        border: 1px solid rgb(255, 255, 255); 
         backdrop-filter: blur(10px);
     }
 

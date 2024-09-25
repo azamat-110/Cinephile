@@ -1,29 +1,38 @@
 <template>
   <div>
     <header class="header main-page-header">
-      <img src="../assets/images/bloc-bg.png" alt="header_bg" />
+      <img
+        :src="
+          `https://image.tmdb.org/t/p/original/` +
+          upcomingList[slide]?.backdrop_path
+        "
+        alt="header_bg"
+      />
       <div class="header__content main-page-header-content">
         <h1 class="header__title main-page-header-title">
-          Мир юрского периода
+          {{ upcomingList[slide]?.title ?? 'нет заголовка' }}
         </h1>
         <p class="header__title main-page-header-descr">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-          eveniet tenetur enim veritatis placeat officiis consequuntur
-          blanditiis laborum quis laboriosam autem obcaecati iusto animi, natus
-          aperiam corrupti deserunt dicta aspernatur?
+          {{ upcomingList[slide]?.overview ?? 'нет описания' }}
         </p>
       </div>
-      <div class="main-page-header-next">
-        <img src="@/assets/images/next.png" alt="next" />
+      <div class="main-page-header-next" @click="nextSlide">
+        <img
+          :src="
+            `https://image.tmdb.org/t/p/original/` +
+            upcomingList[slidePoster]?.backdrop_path
+          "
+          alt="next"
+        />
         <div class="main-page-header-next-content">
           <span>Следующий</span>
-          <h2>Тор: Любовь и гром</h2>
+          <h2>{{ upcomingList[slidePoster]?.title }}</h2>
         </div>
       </div>
     </header>
     <main class="main">
+      <MatSwiper isMovies="false" :movies="moviesStore.movies" />
       <MatSwiper />
-      <MatSwiper isMovies="false" />
       <TopMovies />
     </main>
   </div>
@@ -32,9 +41,27 @@
 <script setup>
 import MatSwiper from "@/components/MatSwiper.vue";
 import TopMovies from "@/components/TopMovies.vue";
+import { useUpcoming } from "@/store/upcoming.js";
+import { useMovies } from "@/store/movies.js";
 
-// const upcomingStore = useUpcoming();
+import {computed, ref } from "vue";
 
+const upcomingStore = useUpcoming();
+const moviesStore = useMovies();
+
+const upcomingList = computed(() => {
+  return upcomingStore.upcoming?.results;
+});
+
+let slide = ref(0);
+let slidePoster = ref(slide.value + 1);
+
+const nextSlide = () => {
+  slide.value =
+    slide.value + 1 === upcomingList.value.length ? 0 : slide.value + 1;
+  slidePoster.value =
+    slide.value + 1 === upcomingList.value.length ? 0 : slide.value + 1;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -74,6 +101,7 @@ import TopMovies from "@/components/TopMovies.vue";
     font-size: 80px;
     font-weight: 700;
     line-height: 94px;
+    text-align: center;
   }
 
   &-descr {

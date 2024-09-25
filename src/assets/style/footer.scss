@@ -1,6 +1,6 @@
 .footer {
-    padding-top: 36px;
-    padding-bottom: 82px;
+    padding-top: 40px;
+    padding-bottom: 30px;
 
     &__content {
         display: flex;
@@ -14,16 +14,16 @@
             font-weight: 300;
             line-height: 24.38px;
             width: 100%;
-            text-align-last: left;
+            text-align-last: center;
             color: rgba(165, 165, 165, 1);
             
             &:nth-of-type(1){
-                margin-top: 50px;
+                margin-top: 40px;
             }
 
             &:nth-of-type(2){
-                margin-top: 20px;
-                margin-bottom: 80px;
+                margin-top: 10px;
+                margin-bottom: 50px;
             }
 
             & a {
