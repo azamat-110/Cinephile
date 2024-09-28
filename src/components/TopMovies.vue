@@ -11,12 +11,18 @@
       space-between="25"
       class="top__movies-swiper"
     >
-      <swiper-slide class="top__movies-swiper-item">
-       <div class="top__movies-swiper-item-info">
-        <h5>1</h5>
-       </div>
-        <img src="@/assets/images/slide.png" alt="slide" /> </swiper-slide
+      <swiper-slide
+        class="top__movies-swiper-item"
+        v-for="(top, index) in topMovies"
+        :key="index"
       >
+        <div class="top__movies-swiper-item-info">
+          <h5>{{ index + 1 }}</h5>
+        </div>
+        <img
+          :src="`https://image.tmdb.org/t/p/original/` + top?.poster_path"
+          alt="slide"
+      /></swiper-slide>
     </swiper>
   </section>
 </template>
@@ -26,8 +32,10 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
+import { useTopMovies } from "@/store/topRated.js";
 
+const topMoviesStore = useTopMovies();
 const modules = ref([Navigation]);
 const swiperModules = ref({
   breakpoints: {
@@ -41,12 +49,24 @@ const swiperModules = ref({
       slidesPerView: 2,
     },
     1200: {
-      slidesPerView: 3  ,
+      slidesPerView: 3,
     },
     1450: {
-      slidesPerView: 4 ,
+      slidesPerView: 4,
     },
   },
+});
+
+const props = defineProps({
+  topMovies: Object,
+});
+
+const topMovies = computed(() => {
+  return topMoviesStore.topMovies;
+});
+
+onMounted(() => {
+  topMoviesStore.getTopMovies();
 });
 </script>
 

@@ -11,11 +11,18 @@
       space-between="25"
       class="mat__section-swiper"
     >
-      <swiper-slide class="mat__section-swiper-item" @click="getItem()" v-for="item in movies?.results" :key="item.id">
-        <img :src="
-          `https://image.tmdb.org/t/p/original/` +
-          item.poster_path
-        " alt="slide" />
+      <swiper-slide
+        class="mat__section-swiper-item"
+        @click="getItem(movie, index)"
+        v-for="(movie, index) in movies?.results"
+        :key="movie.id"
+        :class="{ active: activeItem == index }"
+      >
+        <img
+          :src="`https://image.tmdb.org/t/p/original/` + movie.poster_path"
+          alt="slide"
+        />
+        <span></span>
       </swiper-slide>
     </swiper>
   </section>
@@ -26,7 +33,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
-import { ref } from "vue";
+import { ref, defineEmits, defineProps } from "vue";
 
 const modules = ref([Navigation]);
 const swiperModules = ref({
@@ -51,11 +58,18 @@ const swiperModules = ref({
 
 const props = defineProps({
   isMovies: true,
-  movies: Array,
+  movies: Object,
+  serials: Object,
 });
 
-const gettersITEM = (item) => {
-  console.log(item);
+const emit = defineEmits([
+  'showSlideInfo',
+]);
+
+let activeItem = ref(-1); 
+const getItem = (movie, index) => {
+  activeItem.value = index;
+  emit("showSlideInfo", movie);
 };
 </script>
 
@@ -63,6 +77,7 @@ const gettersITEM = (item) => {
 .mat__section {
   padding-top: 20px;
   padding-bottom: 50px;
+  overflow: hidden;
 
   &-title {
     margin-left: 100px;
@@ -83,9 +98,19 @@ const gettersITEM = (item) => {
 
     &-item {
       border-radius: 10px;
-      overflow: hidden;
       display: flex;
+      height: 468px;
+      border: 1px solid transparent;
+      transition: 0.5s;
       cursor: pointer;
+
+      &.active {
+        border: 1px solid #fff;
+        & span {
+          height: 25px;
+        }
+      }
+
       &::before {
         content: "";
         width: 100%;
@@ -99,6 +124,18 @@ const gettersITEM = (item) => {
         user-select: none;
         object-fit: cover;
         width: 100%;
+        border-radius: 10px;
+      }
+
+      & span {
+        width: 25px;
+        height: 0px;
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        clip-path: polygon(50% 100%, 0 0, 100% 0);
+        background: #fff;
       }
     }
   }

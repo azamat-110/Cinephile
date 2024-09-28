@@ -10,10 +10,10 @@
       />
       <div class="header__content main-page-header-content">
         <h1 class="header__title main-page-header-title">
-          {{ upcomingList[slide]?.title ?? 'нет заголовка' }}
+          {{ upcomingList[slide]?.title ?? "нет заголовка" }}
         </h1>
         <p class="header__title main-page-header-descr">
-          {{ upcomingList[slide]?.overview ?? 'нет описания' }}
+          {{ upcomingList[slide]?.overview ?? "нет описания" }}
         </p>
       </div>
       <div class="main-page-header-next" @click="nextSlide">
@@ -31,9 +31,19 @@
       </div>
     </header>
     <main class="main">
-      <MatSwiper isMovies="false" :movies="moviesStore.movies" />
-      <MatSwiper />
-      <TopMovies />
+      <MatSwiper
+        isMovies="false"
+        :movies="moviesStore.movies"
+        @showSlideInfo="showSlideInfo"
+      />
+      <InfoBlock :showItem="showItem" />
+      <MatSwiper
+        :movies="serialsStore.serials"
+        :showItem="showItem"
+        @showSlideInfo="showSlideInfo"
+      />
+      <InfoBlock :showItem="showItem" />
+      <TopMovies :topMovies="topMoviesStore.topMovies" :showItem="showItem" />
     </main>
   </div>
 </template>
@@ -41,17 +51,31 @@
 <script setup>
 import MatSwiper from "@/components/MatSwiper.vue";
 import TopMovies from "@/components/TopMovies.vue";
+import InfoBlock from "@/components/InfoBlock.vue";
 import { useUpcoming } from "@/store/upcoming.js";
 import { useMovies } from "@/store/movies.js";
+import { useSerials } from "@/store/serials.js";
+import { useTopMovies } from "@/store/topRated.js";
 
-import {computed, ref } from "vue";
+import { computed, ref } from "vue";
 
 const upcomingStore = useUpcoming();
 const moviesStore = useMovies();
+const serialsStore = useSerials();
+const topMoviesStore = useTopMovies();
 
 const upcomingList = computed(() => {
   return upcomingStore.upcoming?.results;
 });
+
+let matItem = ref(null);
+let showItem = ref(false);
+const showSlideInfo = (data) => {
+  if (data) {
+    matItem.value = data;
+    showItem.value = !showItem.value;
+  }
+};
 
 let slide = ref(0);
 let slidePoster = ref(slide.value + 1);

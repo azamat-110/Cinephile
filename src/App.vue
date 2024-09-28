@@ -21,16 +21,22 @@ import Loader from "@/components/Loader.vue";
 import ProgressIndicator from "@/components/ProgressIndicator.vue";
 import { useUpcoming } from "@/store/upcoming.js";
 import { useMovies } from "@/store/movies.js";
+import { useSerials } from "@/store/serials.js";
+import { useTopMovies} from "@/store/topRated.js";
 
 import { onMounted, computed } from "vue";
 
 const upcomingStore = useUpcoming();
 const moviesStore = useMovies();
+const serialsStore = useSerials();
+const topMoviesStore = useTopMovies();
 
 onMounted(() => {
   setTimeout(() => {
     upcomingStore.getUpcoming();
     moviesStore.getMovies();
+    serialsStore.getSerials();
+    topMoviesStore.getTopMovies();
   }, 200);
 });
 

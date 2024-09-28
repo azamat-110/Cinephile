@@ -1,16 +1,16 @@
 import { defineStore } from "pinia";
 import axios from 'axios';
 
-export const useMovies = defineStore({
-    id: 'movies',
+export const useTopMovies = defineStore({
+    id: 'topMovies',
     state: () => {
-        movies: null;
+        topMovies: null;
     },
     actions: {
-        async getMovies() {
+        async getTopMovies() {
             try {
                 const url = `
-                   https://api.themoviedb.org/3/movie/popular?language=ru-RU
+                   https://api.themoviedb.org/3/movie/top_rated?language=ru-RU&page=1
                 `;
                 const response = await axios.get(url, {
                     headers: {
@@ -18,8 +18,7 @@ export const useMovies = defineStore({
                         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTM2NWMzMDdjYzY1MjkzOGMxMGQwOGM3MDAzZDZkMyIsIm5iZiI6MTcyNTUyODE1Ni4zNjY1MTIsInN1YiI6IjY2M2UzZDE3MzA0MmYzNWJlM2ZiNTExYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gRhvfoOOetgtffQy1kznl_XJEEhkhXH2o9zPz9Ekhtw'
                     }
                 })
-                this.movies = response.data;
- 
+                this.topMovies = response.data.results.splice(0,10);
             } catch (error) {
                 console.log(error);
             }
